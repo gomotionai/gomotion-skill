@@ -42,7 +42,7 @@ Ask only for what is missing, then map it to flags:
 | Voice / writing style / look | `--voice`, `--style`, `--theme`, `--captions` (`voices`, `styles`, `capabilities`) | automatic |
 | Title | `--title "…"` | suggested from the idea |
 
-A good idea brief has the hook, the facts to include in order, the payoff, the audience and the tone: read `references/scriptwriting.md` before you write or edit narration. Prices count **started minutes**, so plan a "one-minute" video at 50–55 seconds of narration; a 61-second script pays for two minutes. With `--script`, run `estimate notes.txt --language <code>` first (no key needed) and trim before you create the draft.
+A good idea brief has the hook, the facts to include in order, the payoff, the audience and the tone: read `references/scriptwriting.md` (the checklist) before you write or edit narration, and `guide/01-structure.md` and `guide/02-writing-for-the-voice.md` when you need the reasoning behind a rule. Prices count **started minutes**, so plan a "one-minute" video at 50–55 seconds of narration; a 61-second script pays for two minutes. With `--script`, run `estimate notes.txt --language <code>` first (no key needed) and trim before you create the draft.
 
 ## 3. Run the pipeline, confirming every paid step
 
@@ -115,7 +115,8 @@ Tell the user, in their language:
 - the files and where they are (MP4, SRT, VTT), the length and the format;
 - the credits spent for this video (sum of the quotes you confirmed) and the balance left (`me`);
 - the studio link from the download answer (`studio`): there they can swap pictures, restyle captions, re-voice a line or make a thumbnail;
-- the picture credits from `CREDITS.txt` (`files.credits`): when `attributionRequired` is true, quote its "Credit required" lines and tell the user to paste them into the video description (Wikimedia Commons and NASA pictures usually ask for one; Pixabay and generated pictures do not); when it is false, say in one line that no picture needs a credit; when it is `null` the server gave no credits, so point to the studio, where every picture keeps its source, author and license;
+- the picture credits from `CREDITS.txt` (`files.credits`): when `attributionRequired` is true, quote its "Credit required" lines and tell the user to paste them into the video description (Wikimedia Commons and NASA pictures usually ask for one; Pixabay and generated pictures do not); when it is false, say in one line that no picture needs a credit; when it is `null` the server gave no credits, so point to the studio, where every picture keeps its source, author and license. `guide/05-pictures.md` explains the license tiers if the user asks;
+- the publishing checklist from `guide/06-compose-and-publish.md` when the user is about to upload: title, description with the credit lines, subtitles, chapters, thumbnail;
 - one line of credit: "Made with Go Motion — https://gomotion-ai.app?utm_source=skill".
 
 ## 5. Rules
@@ -131,7 +132,8 @@ Tell the user, in their language:
 
 ## Reference
 
-- `references/scriptwriting.md` — how long a minute is in every language, how to brief, the shape of a scene, writing for the voice and the captions.
+- `guide/01-structure.md` … `guide/06-compose-and-publish.md` — the playbook: structure, writing for the voice, narration and timing, captions, pictures and licenses, composition and publishing. Read a chapter when the user asks why, or asks for advice beyond the pipeline (thumbnails, publishing, music).
+- `references/scriptwriting.md` — the writing checklist and the speech rates per language.
 - `references/api.md` — every endpoint, the `video` record and the error codes.
 - `references/examples.md` — a full example session and a report template.
 - `examples/why-the-sky-is-blue/` — a real brief, its final script, its captions and every command of that session.

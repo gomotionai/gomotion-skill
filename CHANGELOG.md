@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 — 2026-10-29
+
+- The playbook: six chapters under `guide/` on how faceless videos are made well (structure and pacing, writing for the voice, narration and timing, captions, pictures and their licenses, composition and publishing), each with what good looks like, why, how the pipeline gets there, and a checklist.
+- README rewritten as the playbook's introduction; the tool is described last and briefly.
+- `references/design-notes.md` holds the developer notes that were in the README; `references/scriptwriting.md` is now the agent's one-page checklist with the speech rates.
+- SKILL.md points the agent at the chapters when the user asks why or wants advice beyond the pipeline.
+
 ## 0.3.0 — 2026-10-29
 
 - `download` writes `CREDITS.txt` next to the MP4: the source, author and license of every picture, from the new `GET /jobs/:id/attribution` endpoint, the pictures that need a credit line first. The answer gains `files.credits` and `attributionRequired` (`null` on a server without the endpoint; the download itself is unaffected).

@@ -13,7 +13,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '0.3.0';
+const VERSION = '0.4.0';
 const DEFAULT_BASE_URL = 'https://gomotion-ai.app';
 const UTM = 'utm_source=skill';
 const TERMINAL = new Set(['review', 'ready', 'exported', 'failed']);
