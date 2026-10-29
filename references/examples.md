@@ -14,6 +14,9 @@ node $S create --idea "Why octopuses have three hearts: two pump blood to the gi
 node $S plan 3f0c… --max-credits 10 --wait
 # → video.status = review, video.scenes = 6 scenes
 
+node $S estimate 3f0c…
+# → totalSeconds 57.9, startedMinutes 1, advice [] (just over 60 s would pay for two minutes)
+
 # show the scenes; the user changes scene 2 → write scenes.json and send it
 node $S script set 3f0c… scenes.json
 

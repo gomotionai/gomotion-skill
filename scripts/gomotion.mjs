@@ -13,7 +13,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const DEFAULT_BASE_URL = 'https://gomotion-ai.app';
 const UTM = 'utm_source=skill';
 const TERMINAL = new Set(['review', 'ready', 'exported', 'failed']);
@@ -40,6 +40,8 @@ Videos
   plan <videoId> --max-credits N      Write the script (paid); --dry-run for the quote
   script get <videoId>                The scenes as JSON
   script set <videoId> <file>         Replace the scenes (free): scenes.json or script.txt
+  estimate <file | videoId>           Seconds per scene, started minutes and credits before you pay
+      options: --language en --duration 60 --live   (a file needs no key unless --live)
   produce <videoId> --max-credits N   Voice, captions and footage (paid); --dry-run for the quote
   export <videoId> --max-credits N    Render the 1080p MP4 (paid); --dry-run for the quote
   status <videoId> [--wait]           Poll until the current step finishes
@@ -55,6 +57,7 @@ Options
   --interval 3      Seconds between polls
   --idempotency-key Reuse one key to retry the same paid request safely
   --base-url URL    Override GOMOTION_BASE_URL
+  --live            With estimate <file>: use the server's rates and prices, not the built-in table
 
 Environment: GOMOTION_API_KEY (required), GOMOTION_BASE_URL (default ${DEFAULT_BASE_URL})
 Docs: ${DEFAULT_BASE_URL}/how-it-works/agent-skill?${UTM}
@@ -273,6 +276,116 @@ async function scenesFromFile(file) {
   return scenes;
 }
 
+/**
+ * Speech rates of each language's default voice as Go Motion measured them
+ * (2026-10-26, the same passage read in every language). `capabilities` →
+ * `languages[]` publishes the live table; this copy lets `estimate` work with
+ * no key and no request.
+ */
+export const SPEECH_RATES = {
+  en: { charsPerMinute: 980, wordsPerMinute: 170 },
+  nl: { charsPerMinute: 1090, wordsPerMinute: 181 },
+  fr: { charsPerMinute: 1340, wordsPerMinute: 222 },
+  de: { charsPerMinute: 1040, wordsPerMinute: 167 },
+  hi: { charsPerMinute: 910, wordsPerMinute: 179 },
+  id: { charsPerMinute: 1420, wordsPerMinute: 204 },
+  it: { charsPerMinute: 1340, wordsPerMinute: 232 },
+  pl: { charsPerMinute: 760, wordsPerMinute: 111 },
+  pt: { charsPerMinute: 1000, wordsPerMinute: 180 },
+  ru: { charsPerMinute: 840, wordsPerMinute: 128 },
+  es: { charsPerMinute: 1000, wordsPerMinute: 189 },
+  sv: { charsPerMinute: 920, wordsPerMinute: 152 },
+  tr: { charsPerMinute: 970, wordsPerMinute: 132 },
+  uk: { charsPerMinute: 910, wordsPerMinute: 134 },
+  zh: { charsPerMinute: 375, wordsPerMinute: 375, planningUnit: 'characters' },
+};
+/** Credits per started minute of the three paid steps; `capabilities` → `prices` is authoritative. */
+export const DEFAULT_PRICES = { scriptPlanPerMinute: 10, generatePerMinute: 30, exportPerMinute: 5 };
+/** Seconds to keep under a minute mark: the voice and the transitions can add a few. */
+const SAFETY_SECONDS = 5;
+
+const round1 = (n) => Math.round(n * 10) / 10;
+
+/**
+ * The arithmetic behind a quote, before any request: seconds per scene at the
+ * language's character rate, the started minutes a quote rounds to, the credits
+ * of each step at those minutes, and what to cut when the script sits just over
+ * a minute mark. The server's quote (`--dry-run`) stays authoritative.
+ */
+export function estimateScenes(scenes, { language = 'en', rates, prices, targetSeconds } = {}) {
+  const rate = rates ?? SPEECH_RATES[language] ?? SPEECH_RATES.en;
+  const unit = rate.planningUnit ?? 'words';
+  const price = { ...DEFAULT_PRICES, ...(prices ?? {}) };
+  let total = 0;
+  let totalChars = 0;
+  let totalWords = 0;
+  const perScene = scenes.map((scene, index) => {
+    const text = String(scene.narration ?? '').trim();
+    const words = unit === 'characters' ? null : text ? text.split(/\s+/).length : 0;
+    const seconds = (text.length / rate.charsPerMinute) * 60;
+    total += seconds;
+    totalChars += text.length;
+    totalWords += words ?? 0;
+    return {
+      id: scene.id ?? `scene-${index + 1}`,
+      ...(scene.title ? { title: scene.title } : {}),
+      chars: text.length,
+      words,
+      seconds: round1(seconds),
+    };
+  });
+  const minutes = total > 0 ? Math.max(1, Math.ceil(total / 60)) : 0;
+  const credits = {
+    ...(targetSeconds
+      ? { plan: Math.max(1, Math.ceil(targetSeconds / 60)) * price.scriptPlanPerMinute }
+      : {}),
+    produce: minutes * price.generatePerMinute,
+    export: minutes * price.exportPerMinute,
+  };
+  credits.total = (credits.plan ?? 0) + credits.produce + credits.export;
+
+  const advice = [];
+  const charsFor = (seconds) => Math.ceil((seconds / 60) * rate.charsPerMinute);
+  const charsPerWord = totalWords > 0 ? totalChars / totalWords : 0;
+  const inWords = (chars) =>
+    unit === 'characters' || !charsPerWord
+      ? `${chars} characters`
+      : `${chars} characters (about ${Math.ceil(chars / charsPerWord)} words)`;
+  if (minutes === 0) {
+    advice.push('No narration yet. Plan the script first, or write the scenes.');
+  } else if (minutes > 1 && total - (minutes - 1) * 60 <= 12) {
+    const over = total - (minutes - 1) * 60;
+    advice.push(
+      `${round1(over)} s over the ${minutes - 1}-minute mark, so production and export pay for ${minutes} minutes. ` +
+        `Cut at least ${inWords(charsFor(over) + 1)} to get under it; ${inWords(charsFor(over + SAFETY_SECONDS))} leaves a ${SAFETY_SECONDS}-second margin.`
+    );
+  } else if (minutes * 60 - total < SAFETY_SECONDS) {
+    advice.push(
+      `Only ${round1(minutes * 60 - total)} s under the ${minutes}-minute mark; the voice and the transitions can push the timeline over it. ` +
+        `Cut ${inWords(charsFor(SAFETY_SECONDS - (minutes * 60 - total)))} to keep a ${SAFETY_SECONDS}-second margin.`
+    );
+  }
+  if (targetSeconds && minutes > 0 && total < targetSeconds * 0.8)
+    advice.push(
+      `About ${round1(targetSeconds - total)} s shorter than the ${targetSeconds} s target; there is room for an example or a closing line.`
+    );
+
+  return {
+    language,
+    rates: {
+      charsPerMinute: rate.charsPerMinute,
+      wordsPerMinute: rate.wordsPerMinute,
+      planningUnit: unit,
+    },
+    scenes: perScene,
+    totalSeconds: round1(total),
+    startedMinutes: minutes,
+    credits,
+    advice,
+    note: "Estimated at the measured rate of the language's default voice; the server's quote (plan, produce or export with --dry-run) is authoritative.",
+  };
+}
+
 const paidBody = (flags, action) => {
   if (flags.dryRun) return { dryRun: true };
   const max = Number(flags.maxCredits);
@@ -303,17 +416,72 @@ const requireId = (positional, index, what) => {
   return value;
 };
 
+/** `estimate <file | videoId>`: a file is arithmetic on the built-in table unless --live; a draft on the server brings its own scenes, language and target. */
+async function estimate(rest, flags, clientFor) {
+  const target = requireId(rest, 0, 'file or videoId');
+  const targetSeconds = flags.duration !== undefined ? Number(flags.duration) : undefined;
+  const isFile = existsSync(target);
+  if (isFile && !flags.live) {
+    const language = String(flags.language ?? 'en');
+    return {
+      source: 'file',
+      file: target,
+      ratesSource: 'built-in',
+      ...estimateScenes(await scenesFromFile(target), { language, targetSeconds }),
+    };
+  }
+  const client = clientFor();
+  const capabilities = await client.request('GET', 'capabilities');
+  const liveRates = (code) => {
+    const entry = capabilities.languages?.find((language) => language.code === code);
+    return entry?.charsPerMinute ? entry : undefined;
+  };
+  if (isFile) {
+    const language = String(flags.language ?? 'en');
+    const rates = liveRates(language);
+    return {
+      source: 'file',
+      file: target,
+      ratesSource: rates ? 'live' : 'built-in',
+      ...estimateScenes(await scenesFromFile(target), {
+        language,
+        rates,
+        prices: capabilities.prices,
+        targetSeconds,
+      }),
+    };
+  }
+  const video = await client.request('GET', `videos/${target}`);
+  const language = String(flags.language ?? video.settings?.language ?? 'en');
+  const rates = liveRates(language);
+  return {
+    source: 'video',
+    videoId: video.id,
+    status: video.status,
+    ratesSource: rates ? 'live' : 'built-in',
+    ...estimateScenes(video.scenes ?? [], {
+      language,
+      rates,
+      prices: capabilities.prices,
+      targetSeconds: targetSeconds ?? video.settings?.durationSeconds,
+    }),
+  };
+}
+
 export async function run(argv, { client: given, env = process.env } = {}) {
   const { flags, positional } = parseArgs(argv);
   const [command, ...rest] = positional;
   if (!command || command === 'help' || flags.help) return { usage };
   const interval = Math.max(1, Number(flags.interval) || 3);
-  const client =
+  const clientFor = () =>
     given ??
     createClient({
       baseUrl: flags.baseUrl ? String(flags.baseUrl) : undefined,
       env,
     });
+  // A file estimate is arithmetic on the built-in table: no key, no request.
+  if (command === 'estimate') return estimate(rest, flags, clientFor);
+  const client = clientFor();
   const paid = async (action, id, extra = {}) => {
     const body = { ...paidBody(flags, action), ...extra };
     const result = await client.request('POST', `videos/${id}/${action}`, body);

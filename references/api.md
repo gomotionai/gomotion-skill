@@ -21,12 +21,14 @@ Errors use real HTTP statuses. Send `X-GoMotion-Client: skill/<version> <agent>`
 
 Dry run answer: `{ "quote": { "credits", "estimatedProviderUsd", "durationSeconds", "description", "descriptionKey" }, "balance", "remaining", "enough" }`.
 
+**How a quote is computed.** Minutes are started minutes (`ceil(seconds / 60)`, at least 1). `plan` is priced on the target length in `settings.durationSeconds`; `produce` on the narration time of the scenes, estimated as `characters / charsPerMinute × 60` at the language's rate from `capabilities`; `export` on the produced timeline. The CLI's `estimate` command does the same arithmetic before you ask.
+
 ## Endpoints
 
 | Method and path | Body / query | Answer |
 | --- | --- | --- |
 | `GET /me` | — | `{ userId, keyId, balance, limits: { maxActiveJobs, maxDurationSeconds }, links: { studio, pricing, apiKeys, docs } }` |
-| `GET /capabilities` | — | abilities, languages (`code`, `name`, `defaultVoice`, `narration`), limits, `prices: { scriptPlanPerMinute, generatePerMinute, exportPerMinute }` |
+| `GET /capabilities` | — | abilities, languages (`code`, `name`, `defaultVoice`, `narration`, `charsPerMinute`, `wordsPerMinute`, `planningUnit`), limits, `prices: { scriptPlanPerMinute, generatePerMinute, exportPerMinute }` |
 | `GET /voices?language=en` | language code | voices with `id`, `name`, `previewUrl` |
 | `GET /styles` | — | `{ builtin: [...], mine: [...] }` script writing styles (`id`) |
 | `GET /videos?status=draft\|active` | — | summaries: `id`, `title`, `creationStatus`, `creationMode`, `revision`, `aspectRatio`, `durationSeconds`, `language`, timestamps |

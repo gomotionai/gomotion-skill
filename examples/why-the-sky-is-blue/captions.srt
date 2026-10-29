@@ -1,0 +1,87 @@
+1
+00:00:00,000 --> 00:00:02,400
+In the next minute, you will understand why
+
+2
+00:00:02,400 --> 00:00:06,000
+our sky is blue, why sunsets burn red, and why
+
+3
+00:00:06,000 --> 00:00:08,880
+the sky on Mars glows butterscotch. It all
+
+4
+00:00:08,880 --> 00:00:11,450
+starts with sunlight. Sunlight looks white,
+
+5
+00:00:11,850 --> 00:00:14,490
+but it is really a blend of every colour, each
+
+6
+00:00:14,490 --> 00:00:16,810
+with its own wavelength. When this light
+
+7
+00:00:16,890 --> 00:00:19,610
+enters our atmosphere, tiny air molecules
+
+8
+00:00:19,610 --> 00:00:21,690
+scatter the short wavelengths far more
+
+9
+00:00:21,690 --> 00:00:24,399
+strongly than the long ones. Blue light has a
+
+10
+00:00:24,399 --> 00:00:27,199
+short wavelength, so it is scattered again and
+
+11
+00:00:27,199 --> 00:00:29,439
+again until it reaches your eyes from every
+
+12
+00:00:29,439 --> 00:00:32,079
+direction. That is why the whole sky looks
+
+13
+00:00:32,079 --> 00:00:35,687
+blue, not just one patch. At sunset, sunlight
+
+14
+00:00:35,847 --> 00:00:38,807
+must cross far more air to reach you. Along
+
+15
+00:00:38,807 --> 00:00:40,967
+that long path, nearly all the blue is
+
+16
+00:00:40,967 --> 00:00:43,927
+scattered away. The reds and oranges, with
+
+17
+00:00:43,927 --> 00:00:46,567
+longer wavelengths, pass through and remain.
+
+18
+00:00:46,719 --> 00:00:49,679
+On Mars, fine reddish dust fills the thin air
+
+19
+00:00:49,679 --> 00:00:52,159
+and scatters sunlight, giving the sky its
+
+20
+00:00:52,159 --> 00:00:54,959
+butterscotch glow. One principle covers both
+
+21
+00:00:55,039 --> 00:00:57,839
+worlds: scattering paints our sky blue, our
+
+22
+00:00:57,839 --> 00:01:00,239
+sunsets red, and Mars butterscotch.

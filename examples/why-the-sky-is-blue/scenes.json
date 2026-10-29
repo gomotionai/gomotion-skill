@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scene-1",
+    "title": "What you will understand in one minute",
+    "narration": "In the next minute, you will understand why our sky is blue, why sunsets burn red, and why the sky on Mars glows butterscotch. It all starts with sunlight."
+  },
+  {
+    "id": "scene-2",
+    "title": "Sunlight holds every colour",
+    "narration": "Sunlight looks white, but it is really a blend of every colour, each with its own wavelength. When this light enters our atmosphere, tiny air molecules scatter the short wavelengths far more strongly than the long ones."
+  },
+  {
+    "id": "scene-3",
+    "title": "Blue arrives from every direction",
+    "narration": "Blue light has a short wavelength, so it is scattered again and again until it reaches your eyes from every direction. That is why the whole sky looks blue, not just one patch."
+  },
+  {
+    "id": "scene-4",
+    "title": "Why sunsets turn red",
+    "narration": "At sunset, sunlight must cross far more air to reach you. Along that long path, nearly all the blue is scattered away. The reds and oranges, with longer wavelengths, pass through and remain."
+  },
+  {
+    "id": "scene-5",
+    "title": "Mars and its butterscotch sky",
+    "narration": "On Mars, fine reddish dust fills the thin air and scatters sunlight, giving the sky its butterscotch glow. One principle covers both worlds: scattering paints our sky blue, our sunsets red, and Mars butterscotch."
+  }
+]

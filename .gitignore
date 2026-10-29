@@ -5,3 +5,8 @@ gomotion/
 *.vtt
 .DS_Store
 .env
+# The examples keep their real captions.
+!examples/**/*.srt
+.env.*
+*.db
+*.log

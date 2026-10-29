@@ -1,6 +1,6 @@
 ---
 name: gomotion
-description: "Make narrated, captioned faceless videos with Go Motion (gomotion-ai.app) from an idea or a script: write the script, review it, produce voice + captions + footage, export a 1080p MP4 with SRT/VTT captions and download it. Use when the user asks to make, generate or render a video, explainer, faceless video, YouTube video, Shorts, Reels or TikTok clip, or to turn text, notes or an idea into a video; also for 做视频, 生成视频, 把文案做成视频, 解说视频, 口播视频. Needs a Go Motion API key (GOMOTION_API_KEY) and credits bought on gomotion-ai.app; every paid step is quoted and confirmed first."
+description: "Make narrated, captioned faceless videos with Go Motion (gomotion-ai.app) from an idea or a script: write the script, review it, produce voice + captions + footage, export a 1080p MP4 with SRT/VTT captions and download it. Use when the user asks to make, generate or render a video, explainer, faceless video, YouTube video, Shorts, Reels or TikTok clip, or to turn text, notes or an idea into a video; also for 做视频, 生成视频, 把文案做成视频, 解说视频, 口播视频. Needs a Go Motion API key (GOMOTION_API_KEY); new accounts start with free credits that cover a first one-minute video, and every paid step is quoted and confirmed before it runs."
 argument-hint: "<topic or script, length, 16:9 or 9:16, language>"
 user-invocable: true
 license: MIT
@@ -42,7 +42,7 @@ Ask only for what is missing, then map it to flags:
 | Voice / writing style / look | `--voice`, `--style`, `--theme`, `--captions` (`voices`, `styles`, `capabilities`) | automatic |
 | Title | `--title "…"` | suggested from the idea |
 
-A good idea brief has the hook, the facts to include, the audience and the tone. Longer videos cost more: prices are per started minute.
+A good idea brief has the hook, the facts to include in order, the payoff, the audience and the tone: read `references/scriptwriting.md` before you write or edit narration. Prices count **started minutes**, so plan a "one-minute" video at 50–55 seconds of narration; a 61-second script pays for two minutes. With `--script`, run `estimate notes.txt --language <code>` first (no key needed) and trim before you create the draft.
 
 ## 3. Run the pipeline, confirming every paid step
 
@@ -64,7 +64,13 @@ Show `planQuote.quote.credits` and ask. Then:
 node …/scripts/gomotion.mjs plan <videoId> --max-credits <quote.credits> --wait
 ```
 
-`--wait` polls until the video is in `review` (or `failed`). Show the user the scenes (`video.scenes[].narration`) in order and offer edits.
+`--wait` polls until the video is in `review` (or `failed`). Show the user the scenes (`video.scenes[].narration`) in order and offer edits. Then check the length:
+
+```bash
+node …/scripts/gomotion.mjs estimate <videoId>
+```
+
+If `advice` says the script is just over a minute mark, trim the words it names in step c before production: the cut is free, the extra minute is not.
 
 ### c. Edit the scenes (free, optional)
 
@@ -100,7 +106,7 @@ node …/scripts/gomotion.mjs export <videoId> --max-credits <quote.credits> --w
 node …/scripts/gomotion.mjs download <videoId> --out ./gomotion
 ```
 
-Saves the MP4 plus `.srt` and `.vtt` captions into `./gomotion/` (override with `--out`) and returns the paths, the studio link and the balance is visible through `me`.
+Saves the MP4 plus `.srt` and `.vtt` captions into `./gomotion/` (override with `--out`) and returns the paths and the studio link; the balance is visible through `me`.
 
 ## 4. Report the result
 
@@ -109,6 +115,7 @@ Tell the user, in their language:
 - the files and where they are (MP4, SRT, VTT), the length and the format;
 - the credits spent for this video (sum of the quotes you confirmed) and the balance left (`me`);
 - the studio link from the download answer (`studio`): there they can swap pictures, restyle captions, re-voice a line or make a thumbnail;
+- that every picture keeps its source, author and license in the studio: Pixabay and generated pictures need no credit, Wikimedia Commons and NASA pictures carry a credit line for the video description;
 - one line of credit: "Made with Go Motion — https://gomotion-ai.app?utm_source=skill".
 
 ## 5. Rules
@@ -124,6 +131,8 @@ Tell the user, in their language:
 
 ## Reference
 
+- `references/scriptwriting.md` — how long a minute is in every language, how to brief, the shape of a scene, writing for the voice and the captions.
 - `references/api.md` — every endpoint, the `video` record and the error codes.
 - `references/examples.md` — a full example session and a report template.
+- `examples/why-the-sky-is-blue/` — a real brief, its final script, its captions and every command of that session.
 - Guide with screenshots: https://gomotion-ai.app/how-it-works/agent-skill?utm_source=skill
