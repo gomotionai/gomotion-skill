@@ -8,7 +8,7 @@ import test from 'node:test';
 import { DEFAULT_PRICES, SPEECH_RATES, estimateScenes, run } from '../scripts/gomotion.mjs';
 
 const example = JSON.parse(
-  readFileSync(new URL('../examples/why-the-sky-is-blue/scenes.json', import.meta.url), 'utf8')
+  readFileSync(new URL('./fixtures/why-the-sky-is-blue.scenes.json', import.meta.url), 'utf8')
 );
 const untrimmed = [
   ...example.slice(0, 1),

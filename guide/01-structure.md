@@ -8,7 +8,7 @@ A faceless video is a sequence of scenes. Each scene is one spoken thought, one 
 
 - **One idea per scene.** The narration of a scene makes one point, and the picture illustrates that point. A scene that makes two points will get a picture for one of them and leave the other naked. If you catch yourself writing "and also" in a scene, it is two scenes.
 - **A scene is as long as the thought.** The cut follows the narration, not a stopwatch. A scene that needs one sentence gets one sentence; a scene that needs three gets three. What you avoid is the scene that runs on: once a picture has been on screen for the length of a long breath, the eye starts looking for something new, and a long scene with a static picture is where viewers leave.
-- **A scene has a title that nobody hears.** The title is for you and for the picture search: a concrete noun phrase that says what should be on screen ("Sunlight holds every colour", "Mars and its butterscotch sky"). "Introduction" and "Conclusion" are not titles; they tell the picture search nothing.
+- **A scene has a title that nobody hears.** The title is for you and for the picture search: a concrete noun phrase that says what should be on screen ("Three Hearts, One Team", "Blue Blood, Built on Copper"). "Introduction" and "Conclusion" are not titles; they tell the picture search nothing.
 
 Go Motion plans and edits in exactly this unit. The script you review is a list of scenes, each with a title and a narration, and production attaches a voice, timed captions and a picture to each of them. When you edit, you edit a scene; when you swap a picture, you swap it for a scene.
 
@@ -16,11 +16,11 @@ Go Motion plans and edits in exactly this unit. The script you review is a list 
 
 Most faceless videos under a few minutes have the same skeleton, whatever the topic: a hook, a body, and a payoff. The skeleton is boring; the craft is in making each part do its job.
 
-**The hook says what the viewer gets.** The first scene is not an introduction and not a welcome. It is a promise: in the next minute you will understand X, or here is the thing that makes Y surprising. The example in this repository opens with "In the next minute, you will understand why our sky is blue, why sunsets burn red, and why the sky on Mars glows butterscotch." Three concrete promises, and the video then keeps each of them. A hook that promises nothing ("Today we're going to talk about the sky") is skipped.
+**The hook says what the viewer gets.** The first scene is not an introduction and not a welcome. It is a promise: in the next minute you will understand X, or here is the thing that makes Y surprising. The example in this repository opens with "In this video, you will learn why octopuses have three hearts, why their blood is blue, and how this anatomy helps them survive in cold, deep water." Three concrete promises, and the video then keeps each of them. A hook that promises nothing ("Today we're going to talk about octopuses") is skipped.
 
-**The body alternates claim and proof.** Each body scene states one thing and then makes it real: a number, an example, a comparison, a mechanism. "Blue light has a short wavelength, so it is scattered again and again" is the claim; "until it reaches your eyes from every direction, that is why the whole sky looks blue, not just one patch" is the proof. A body that is all claims sounds like a lecture; a body that is all examples never gets to the point.
+**The body alternates claim and proof.** Each body scene states one thing and then makes it real: a number, an example, a comparison, a mechanism. "When an octopus swims, its systemic heart stops beating" is the claim; "swimming exhausts the animal, because less oxygen reaches its body, which is one reason octopuses usually crawl along the seafloor" is the proof. A body that is all claims sounds like a lecture; a body that is all examples never gets to the point.
 
-**The payoff lands the promise.** The last scene answers the question the hook asked, or shows the consequence of everything before it. In the example, the Mars sky is the payoff: the same scattering that paints our sky blue paints theirs butterscotch, and the viewer leaves with one principle instead of three facts. Do not end with "thanks for watching" or "let me know in the comments"; end on the idea, and let the platform's end screen do the rest.
+**The payoff lands the promise.** The last scene answers the question the hook asked, or shows the consequence of everything before it. In the example, the payoff is the one sentence the brief asked for: two hearts feed the gills, one feeds the body, and copper-based blood carries oxygen in the cold deep; the viewer leaves with one design instead of three facts. Do not end with "thanks for watching" or "let me know in the comments"; end on the idea, and let the platform's end screen do the rest.
 
 ## Six shapes of a script
 
@@ -59,19 +59,19 @@ The approach that works, and the one Go Motion uses for longer scripts, is to pl
 
 If you write long scripts by hand, the same discipline applies: outline, hand-offs, continue from the previous ending, and read the seams aloud.
 
-## Worked example: "Why the sky is blue" in five scenes
+## Worked example: "Why Octopuses Have Three Hearts" in five scenes
 
-The example in `examples/why-the-sky-is-blue/` was written from a one-paragraph brief. Its five scenes each do one job:
+The example in `examples/why-octopuses-have-three-hearts/` was written from a one-paragraph brief that asked for one surprising fact per scene and a short takeaway. Its five scenes each do one job:
 
 | Scene | Title | Job |
 | --- | --- | --- |
-| 1 | What you will understand in one minute | the hook: three promises |
-| 2 | Sunlight holds every colour | setup: the fact the mechanism needs |
-| 3 | Blue arrives from every direction | the mechanism, and the answer to the title |
-| 4 | Why sunsets turn red | the contrast that proves the mechanism |
-| 5 | Mars and its butterscotch sky | the payoff: one principle, two worlds |
+| 1 | A Blueprint for the Deep | the hook: three promises |
+| 2 | Three Hearts, One Team | the setup: what each heart does |
+| 3 | Why Swimming Is Exhausting | the surprise: the heart that stops |
+| 4 | Blue Blood, Built on Copper | the second mechanism, and why it suits cold water |
+| 5 | The Takeaway | the payoff: one design, one sentence |
 
-Notice what is not there: no introduction scene, no "in this video", no summary scene that repeats scenes 2 to 4. The video is a minute long because a minute is what the idea needs, and the hook promised exactly what the five scenes deliver.
+Notice what is not there: no introduction scene before the promise, no scene that carries two facts, no "thanks for watching". The last scene is a recap, which is usually a mistake, and here it works because the brief asked for one and it compresses the whole video into a single sentence instead of repeating scenes 2 to 4. The video is just over a minute long because that is what five facts need.
 
 ## Checklist
 

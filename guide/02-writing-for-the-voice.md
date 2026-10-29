@@ -36,9 +36,9 @@ The brief is the most important text you will write, because everything downstre
 
 The brief behind the worked example is one paragraph that does all five:
 
-> Why the sky is blue, explained in one minute: sunlight is made of every colour, air molecules scatter short blue wavelengths far more than red ones (Rayleigh scattering), so blue light reaches our eyes from every direction; at sunset the light crosses more air, the blue is scattered away and reds remain. End with why Mars has a butterscotch sky.
+> Explain why octopuses have three hearts and blue blood, and how this strange anatomy helps them survive in cold, deep water. The video is for curious viewers of a faceless science channel: friendly, clear and visual, with one surprising fact per scene and a short takeaway at the end.
 
-Given a brief like that, a planner (Go Motion's, or you) produces a title and a list of scenes, each with a title that steers the picture and a narration that is spoken, sized to the length you asked for. The facts arrive in the order the brief gave them, the hook becomes scene one, and "end with" becomes the payoff.
+Given a brief like that, a planner (Go Motion's, or you) produces a title and a list of scenes, each with a title that steers the picture and a narration that is spoken, sized to the length you asked for. The facts arrive in the order the brief gave them, the hook becomes scene one, "one surprising fact per scene" becomes the shape of the middle, and "a short takeaway" becomes the last scene.
 
 ## Borrowing a channel's style
 

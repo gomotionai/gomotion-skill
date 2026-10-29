@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scene-1",
+    "title": "A Blueprint for the Deep",
+    "narration": "In this video, you will learn why octopuses have three hearts, why their blood is blue, and how this anatomy helps them survive in cold, deep water. The answer is clever natural engineering."
+  },
+  {
+    "id": "scene-2",
+    "title": "Three Hearts, One Team",
+    "narration": "Two of the hearts, called branchial hearts, pump blood through the gills to collect oxygen. The third, the systemic heart, pushes that oxygen-rich blood around the body. Each pump has exactly one job, and together they keep the octopus alive."
+  },
+  {
+    "id": "scene-3",
+    "title": "Why Swimming Is Exhausting",
+    "narration": "Here is the surprising part: when an octopus swims, its systemic heart stops beating. Swimming exhausts the animal, because less oxygen reaches its body. That is one reason octopuses usually crawl along the seafloor."
+  },
+  {
+    "id": "scene-4",
+    "title": "Blue Blood, Built on Copper",
+    "narration": "Their blood is blue because it carries oxygen with hemocyanin, a copper-based protein, not the iron that makes our blood red. When hemocyanin binds oxygen, it turns blue, and it works well in cold, oxygen-poor water."
+  },
+  {
+    "id": "scene-5",
+    "title": "The Takeaway",
+    "narration": "So the takeaway is simple: two hearts feed the gills, one feeds the body, and copper-based blue blood moves oxygen efficiently in the cold deep. A strange design, but perfectly suited to the octopus's world."
+  }
+]

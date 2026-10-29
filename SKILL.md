@@ -136,5 +136,5 @@ Tell the user, in their language:
 - `references/scriptwriting.md` — the writing checklist and the speech rates per language.
 - `references/api.md` — every endpoint, the `video` record and the error codes.
 - `references/examples.md` — a full example session and a report template.
-- `examples/why-the-sky-is-blue/` — a real brief, its final script, its captions and every command of that session.
+- `examples/why-octopuses-have-three-hearts/` — a real brief, its final script, the captions of the exported video, how it was edited after production, and the credit each picture carries.
 - Guide with screenshots: https://gomotion-ai.app/how-it-works/agent-skill?utm_source=skill

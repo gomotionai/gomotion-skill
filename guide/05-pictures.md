@@ -66,7 +66,7 @@ Every picture has an owner and terms, and a video that ignores them is one compl
 | Review before use | Non-commercial (NC), no-derivatives (ND), share-alike (SA), unstated terms | A decision per channel: a monetised video is commercial, a captioned cut is a derivative, share-alike can bind your own video |
 | Blocked | All rights reserved, editorial-only | Do not use |
 
-Go Motion records the source, author, license and whether credit is required for every picture it places, shows them in the studio, and the skill writes them into a `CREDITS.txt` next to the exported MP4, credits that are required first. The example in this repository needed one credit line (a NASA photograph from Wikimedia Commons) and none for its three stock clips and its one illustration.
+Go Motion records the source, author, license and whether credit is required for every picture it places, shows them in the studio, and the skill writes them into a `CREDITS.txt` next to the exported MP4, credits that are required first. The example in this repository needed one credit line, for a Wikimedia Commons photograph under CC BY-SA, and none for its three stock pictures and its one illustration; the share-alike part of that license was a decision the channel made once.
 
 Three habits keep you safe:
 

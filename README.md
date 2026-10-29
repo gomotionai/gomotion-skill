@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="#the-playbook">The playbook</a> ·
-  <a href="examples/why-the-sky-is-blue/">Worked example</a> ·
+  <a href="examples/why-octopuses-have-three-hearts/">Worked example</a> ·
   <a href="#the-skill">The skill</a> ·
   <a href="references/api.md">API reference</a>
 </p>
@@ -44,19 +44,19 @@ This playbook is about those joints. Each chapter says what good looks like, why
 
 Alongside the chapters:
 
-- [**A worked example**](examples/why-the-sky-is-blue/): a one-paragraph brief, the five scenes it became, the captions, every command of the session that produced it, and the credit line its one archival picture required.
+- [**A worked example**](examples/why-octopuses-have-three-hearts/): a one-paragraph brief, the five scenes it became, the captions of the exported video, how it was edited after production, and the credit each picture carries.
 - [**The writing checklist**](references/scriptwriting.md): the agent's one-page version of chapters 1 and 2, with the measured speech rates per language.
 - [**Design notes**](references/design-notes.md): for developers, how a pipeline lets an agent spend credits safely (quote, cap, confirm; idempotent paid requests; refunds as a contract).
 
 ## See it applied
 
 <p align="center">
-  <a href="https://cdn.gomotion-ai.app/site-assets/skill/why-the-sky-is-blue.mp4"><img src="https://cdn.gomotion-ai.app/site-assets/skill/why-the-sky-is-blue.gif" width="640" alt="The first 15 seconds of “Why the sky is blue”" /></a>
+  <a href="https://cdn.gomotion-ai.app/site-assets/skill/why-octopuses-have-three-hearts.mp4"><img src="https://cdn.gomotion-ai.app/site-assets/skill/why-octopuses-have-three-hearts-preview.gif" width="640" alt="The first seconds of “Why Octopuses Have Three Hearts”" /></a>
   <br />
-  <sub>“Why the sky is blue”, 60 seconds, 1080p. <a href="https://cdn.gomotion-ai.app/site-assets/skill/why-the-sky-is-blue.mp4">Full MP4</a> · <a href="examples/why-the-sky-is-blue/session.md">the session</a></sub>
+  <sub>“Why Octopuses Have Three Hearts”, about a minute, 1080p. <a href="https://cdn.gomotion-ai.app/site-assets/skill/why-octopuses-have-three-hearts.mp4">Full MP4</a> · <a href="examples/why-octopuses-have-three-hearts/making-of.md">how it was made</a></sub>
 </p>
 
-The example follows the playbook end to end: a brief with a hook, ordered facts and a payoff (chapter 2); five scenes that each do one job, from the promise to the Mars sky (chapter 1); a script trimmed by six words after a length check (chapter 2); captions timed from the speech (chapter 3); three stock clips, one illustration and one archival photograph chosen by looking (chapter 5); and a credit line for the NASA picture that goes into the description (chapters 5 and 6).
+The example follows the playbook end to end: a brief that names the audience, the tone, a rule per scene and the ending (chapter 2); five scenes that each carry one surprising fact, from the promise to a one-sentence takeaway (chapter 1); a voice chosen for a science channel, one line rewritten and re-voiced on its own (chapter 3); karaoke captions timed from the speech (chapter 4); pictures from three libraries and one illustration, two of them changed after production, with a Creative Commons credit line for the description (chapters 5 and 6).
 
 ## The skill
 

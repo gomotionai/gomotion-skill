@@ -79,14 +79,14 @@ Status flow: `review` →(plan)→ `planning` → `review` →(produce)→ `prod
 ```jsonc
 [
   {
-    "sceneId": "scene-5", "sceneNumber": 5, "sceneTitle": "Mars and its butterscotch sky",
+    "sceneId": "scene-1", "sceneNumber": 1, "sceneTitle": "A Blueprint for the Deep",
     "kind": "image",                       // image | video
     "originKind": "stock",                 // stock | ai | illustrative | upload
     "source": "commons", "sourceName": "Wikimedia Commons",
-    "name": "PIA16160 Mars sky",           // the picture's own title
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:…",
-    "author": "NASA/JPL-Caltech/MSSS", "authorUrl": "https://commons.wikimedia.org/wiki/File:…",
-    "license": "Public Domain", "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "name": "Octopus eyes closeup",        // the picture's own title
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Octopus_eyes_closeup.jpg",
+    "author": "Victor Micallef", "authorUrl": "https://commons.wikimedia.org/wiki/File:Octopus_eyes_closeup.jpg",
+    "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "attributionRequired": true            // the credit line belongs in the video description
   }
 ]

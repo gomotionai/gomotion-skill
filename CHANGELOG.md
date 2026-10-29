@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 — 2026-10-29
+
+- The worked example is now "Why Octopuses Have Three Hearts": a series made in the studio with an edit after production (one line re-voiced, two pictures changed, a generated cover), its brief, scenes, captions, making-of and picture credits. The earlier "Why the sky is blue" scenes remain as a test fixture.
+
 ## 0.4.0 — 2026-10-29
 
 - The playbook: six chapters under `guide/` on how faceless videos are made well (structure and pacing, writing for the voice, narration and timing, captions, pictures and their licenses, composition and publishing), each with what good looks like, why, how the pipeline gets there, and a checklist.
