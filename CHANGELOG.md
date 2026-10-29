@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 — 2026-10-29
+
+- `estimate`: the script step is only counted for a draft that has no scenes yet. A file (your own script) and a planned or produced video list production and export only; `--duration` still drives the length advice. Found while checking the live rates against production.
+
 ## 0.2.0 — 2026-10-29
 
 - `estimate <file | videoId>`: seconds per scene, started minutes and the credits of each step before you ask for a quote, offline for a file (built-in speech rates) or with the server's live rates (`--live`, or a draft on the server). Tells you how many words to cut when a script sits just over a minute mark.

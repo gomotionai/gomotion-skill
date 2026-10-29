@@ -13,7 +13,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const DEFAULT_BASE_URL = 'https://gomotion-ai.app';
 const UTM = 'utm_source=skill';
 const TERMINAL = new Set(['review', 'ready', 'exported', 'failed']);
@@ -312,7 +312,10 @@ const round1 = (n) => Math.round(n * 10) / 10;
  * of each step at those minutes, and what to cut when the script sits just over
  * a minute mark. The server's quote (`--dry-run`) stays authoritative.
  */
-export function estimateScenes(scenes, { language = 'en', rates, prices, targetSeconds } = {}) {
+export function estimateScenes(
+  scenes,
+  { language = 'en', rates, prices, targetSeconds, includePlan = false } = {}
+) {
   const rate = rates ?? SPEECH_RATES[language] ?? SPEECH_RATES.en;
   const unit = rate.planningUnit ?? 'words';
   const price = { ...DEFAULT_PRICES, ...(prices ?? {}) };
@@ -335,8 +338,10 @@ export function estimateScenes(scenes, { language = 'en', rates, prices, targetS
     };
   });
   const minutes = total > 0 ? Math.max(1, Math.ceil(total / 60)) : 0;
+  // The script step is only ahead of a draft that has no scenes yet; a file is
+  // the user's own script and a planned video has paid for its script already.
   const credits = {
-    ...(targetSeconds
+    ...(includePlan && targetSeconds
       ? { plan: Math.max(1, Math.ceil(targetSeconds / 60)) * price.scriptPlanPerMinute }
       : {}),
     produce: minutes * price.generatePerMinute,
@@ -464,6 +469,7 @@ async function estimate(rest, flags, clientFor) {
       rates,
       prices: capabilities.prices,
       targetSeconds: targetSeconds ?? video.settings?.durationSeconds,
+      includePlan: !(video.scenes?.length > 0),
     }),
   };
 }

@@ -29,7 +29,7 @@ test('the example script is one started minute; with the sentence it lost it was
   const longer = estimateScenes(untrimmed, { language: 'en', targetSeconds: 60 });
   assert.ok(longer.totalSeconds > 60 && longer.totalSeconds < 62, `got ${longer.totalSeconds}`);
   assert.equal(longer.startedMinutes, 2);
-  assert.deepEqual(longer.credits, { plan: 10, produce: 60, export: 10, total: 80 });
+  assert.deepEqual(longer.credits, { produce: 60, export: 10, total: 70 });
   assert.match(longer.advice[0], /over the 1-minute mark.*pay for 2 minutes.*Cut at least \d+ characters \(about \d+ words\)/);
 });
 
@@ -50,10 +50,12 @@ test('rates and prices can come from the live table; Chinese counts characters',
   assert.ok(live.totalSeconds < 31, `got ${live.totalSeconds}`);
   assert.deepEqual(live.credits, { produce: 40, export: 6, total: 46 });
 
-  const empty = estimateScenes([], { language: 'en', targetSeconds: 60 });
+  const empty = estimateScenes([], { language: 'en', targetSeconds: 60, includePlan: true });
   assert.equal(empty.startedMinutes, 0);
   assert.deepEqual(empty.credits, { plan: DEFAULT_PRICES.scriptPlanPerMinute, produce: 0, export: 0, total: 10 });
   assert.match(empty.advice[0], /No narration yet/);
+  // Without the script step ahead (a file, or a planned video) there is no plan line.
+  assert.deepEqual(estimateScenes([], { language: 'en', targetSeconds: 60 }).credits, { produce: 0, export: 0, total: 0 });
 });
 
 test('estimate on a file needs no key; a videoId or --live asks the server', async () => {
@@ -66,7 +68,7 @@ test('estimate on a file needs no key; a videoId or --live asks the server', asy
     assert.equal(offline.ratesSource, 'built-in');
     assert.equal(offline.scenes.length, 2);
     assert.equal(offline.scenes[0].title, 'Hook');
-    assert.equal(offline.credits.plan, 10);
+    assert.equal(offline.credits.plan, undefined, 'a file is the user\'s own script: no plan step');
     assert.match(offline.advice[0], /shorter than the 30 s target/);
 
     const requests = [];
@@ -81,6 +83,8 @@ test('estimate on a file needs no key; a videoId or --live asks the server', asy
           };
         if (pathname === 'videos/v1')
           return { id: 'v1', status: 'review', settings: { language: 'en', durationSeconds: 60 }, scenes: example };
+        if (pathname === 'videos/v0')
+          return { id: 'v0', status: 'review', settings: { language: 'en', durationSeconds: 60 }, scenes: [] };
         throw new Error(`unexpected ${pathname}`);
       },
     };
@@ -89,7 +93,11 @@ test('estimate on a file needs no key; a videoId or --live asks the server', asy
     assert.equal(live.source, 'video');
     assert.equal(live.ratesSource, 'live');
     assert.equal(live.status, 'review');
-    assert.deepEqual(live.credits, { plan: 10, produce: 30, export: 5, total: 45 });
+    assert.deepEqual(live.credits, { produce: 30, export: 5, total: 35 }, 'the script is written: no plan line');
+
+    const unplanned = await run(['estimate', 'v0'], { client });
+    assert.deepEqual(unplanned.credits, { plan: 10, produce: 0, export: 0, total: 10 });
+    assert.match(unplanned.advice[0], /No narration yet/);
 
     const liveFile = await run(['estimate', file, '--live'], { client });
     assert.equal(liveFile.source, 'file');
