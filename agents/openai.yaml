@@ -1,0 +1,9 @@
+interface:
+  display_name: "Go Motion"
+  short_description: "Make narrated, captioned videos from an idea or a script"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#F26B21"
+  default_prompt: "Use $gomotion to make a 60-second 16:9 explainer video about ..."
+policy:
+  allow_implicit_invocation: true
