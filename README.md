@@ -87,7 +87,7 @@ One JSON document on stdout, progress on stderr, exit codes 0, 1 and 2, `--wait`
 
 ### 6. Pictures keep their papers
 
-Every picture in a video records its source, author and license. The studio shows them, and the [example](examples/why-the-sky-is-blue/session.md#the-result-and-its-credits) lists them: three Pixabay clips, an AI illustration, and a NASA photograph from Wikimedia Commons with the credit line it asks for.
+Every picture in a video records its source, author and license. The studio shows them, and the [example](examples/why-the-sky-is-blue/session.md#the-result-and-its-credits) lists them: three Pixabay clips, an AI illustration, and a NASA photograph from Wikimedia Commons with the credit line it asks for. The API returns them too (`GET /jobs/:id/attribution`), and `download` writes them to `CREDITS.txt` next to the MP4, the pictures that need a credit line first, so the agent can quote them without opening the studio.
 
 ## What it costs
 
@@ -147,7 +147,7 @@ In Claude Code, just ask (`make a 45-second vertical video about …`) or run `/
 2. creates a free draft from your idea, or from a script you give it (`estimate` first);
 3. **quotes every paid step and asks before spending**: writing the script, producing the video, exporting the MP4;
 4. shows you the script, checks its length against the minute mark, and applies your edits before production;
-5. downloads the MP4 and captions into `./gomotion/`, gives you the studio link, and names any picture that needs a credit line.
+5. downloads the MP4, the captions and `CREDITS.txt` into `./gomotion/`, gives you the studio link, and names any picture that needs a credit line.
 
 ### The CLI on its own
 

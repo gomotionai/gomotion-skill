@@ -32,7 +32,7 @@ node $S export 3f0c… --max-credits 5 --wait
 # → video.status = exported
 
 node $S download 3f0c… --out ./gomotion
-# → files.mp4, files.srt, files.vtt, studio link
+# → files.mp4, files.srt, files.vtt, files.credits (CREDITS.txt), attributionRequired, studio link
 ```
 
 ## From the user's own script
@@ -47,7 +47,8 @@ node $S create --script notes.txt --ratio 9:16 --language en
 ## Report template
 
 > Done: **Why octopuses have three hearts** — 1:02, 16:9, English.
-> Files: `gomotion/Why_octopuses_have_three_hearts-r4.mp4`, `.srt`, `.vtt`.
+> Files: `gomotion/Why_octopuses_have_three_hearts-r4.mp4`, `.srt`, `.vtt`, `CREDITS.txt`.
+> Credits: one picture needs a credit line (scene 4, a photograph via Wikimedia Commons); it is in `CREDITS.txt`, paste it into the video description. The other pictures need none.
 > Credits: 10 (script) + 30 (production) + 5 (export) = 45; 1005 left.
 > Fine-tune pictures, captions or the voice in the studio: https://gomotion-ai.app/app/projects/3f0c…?utm_source=skill
 > Made with Go Motion — https://gomotion-ai.app?utm_source=skill

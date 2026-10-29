@@ -106,7 +106,7 @@ node …/scripts/gomotion.mjs export <videoId> --max-credits <quote.credits> --w
 node …/scripts/gomotion.mjs download <videoId> --out ./gomotion
 ```
 
-Saves the MP4 plus `.srt` and `.vtt` captions into `./gomotion/` (override with `--out`) and returns the paths and the studio link; the balance is visible through `me`.
+Saves the MP4, the `.srt` and `.vtt` captions and `CREDITS.txt` (every picture's source, author and license, the ones that need a credit line first) into `./gomotion/` (override with `--out`) and returns the paths (`files`), `attributionRequired` and the studio link; the balance is visible through `me`.
 
 ## 4. Report the result
 
@@ -115,7 +115,7 @@ Tell the user, in their language:
 - the files and where they are (MP4, SRT, VTT), the length and the format;
 - the credits spent for this video (sum of the quotes you confirmed) and the balance left (`me`);
 - the studio link from the download answer (`studio`): there they can swap pictures, restyle captions, re-voice a line or make a thumbnail;
-- that every picture keeps its source, author and license in the studio: Pixabay and generated pictures need no credit, Wikimedia Commons and NASA pictures carry a credit line for the video description;
+- the picture credits from `CREDITS.txt` (`files.credits`): when `attributionRequired` is true, quote its "Credit required" lines and tell the user to paste them into the video description (Wikimedia Commons and NASA pictures usually ask for one; Pixabay and generated pictures do not); when it is false, say in one line that no picture needs a credit; when it is `null` the server gave no credits, so point to the studio, where every picture keeps its source, author and license;
 - one line of credit: "Made with Go Motion — https://gomotion-ai.app?utm_source=skill".
 
 ## 5. Rules

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 — 2026-10-29
+
+- `download` writes `CREDITS.txt` next to the MP4: the source, author and license of every picture, from the new `GET /jobs/:id/attribution` endpoint, the pictures that need a credit line first. The answer gains `files.credits` and `attributionRequired` (`null` on a server without the endpoint; the download itself is unaffected).
+- `references/api.md`: `GET /videos/:id/attribution` (current version) and `GET /jobs/:id/attribution` (one export), the entry shape, and the `attribution` link in `export` and `download`.
+- SKILL.md: the report quotes `CREDITS.txt` and says which pictures need a credit line.
+
 ## 0.2.1 — 2026-10-29
 
 - `estimate`: the script step is only counted for a draft that has no scenes yet. A file (your own script) and a planned or produced video list production and export only; `--duration` still drives the length advice. Found while checking the live rates against production.

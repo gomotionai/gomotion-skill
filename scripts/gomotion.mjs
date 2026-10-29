@@ -13,7 +13,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '0.2.1';
+const VERSION = '0.3.0';
 const DEFAULT_BASE_URL = 'https://gomotion-ai.app';
 const UTM = 'utm_source=skill';
 const TERMINAL = new Set(['review', 'ready', 'exported', 'failed']);
@@ -45,7 +45,7 @@ Videos
   produce <videoId> --max-credits N   Voice, captions and footage (paid); --dry-run for the quote
   export <videoId> --max-credits N    Render the 1080p MP4 (paid); --dry-run for the quote
   status <videoId> [--wait]           Poll until the current step finishes
-  download <videoId> [--out dir]      Save the MP4 and captions (default ./gomotion)
+  download <videoId> [--out dir]      Save the MP4, captions and CREDITS.txt (default ./gomotion)
   delete <videoId>
 
 Jobs
@@ -391,6 +391,58 @@ export function estimateScenes(
   };
 }
 
+/** One credit line: the scene, then who made the picture and where it came from. */
+export function creditLine(item) {
+  const scene = `Scene ${item.sceneNumber}${item.sceneTitle ? ` — ${item.sceneTitle}` : ''}`;
+  const work = item.kind === 'video' ? 'video' : 'image';
+  if (item.originKind === 'ai' || item.originKind === 'illustrative')
+    return `${scene}: AI-generated ${work}`;
+  if (item.originKind === 'upload') return `${scene}: ${work} uploaded by you`;
+  const source = item.sourceName || item.source;
+  const by = item.author ? `${item.author} via ${source}` : source;
+  const url = item.licenseUrl || item.sourceUrl;
+  return `${scene}: ${by}${item.license ? `, ${item.license}` : ''}${url ? ` (${url})` : ''}`;
+}
+
+/**
+ * The CREDITS.txt saved next to the MP4: the pictures that need a credit line
+ * first (they belong in the video description), then the rest.
+ */
+export function creditsText(title, items, madeWith) {
+  const required = items.filter((item) => item.attributionRequired);
+  const rest = items.filter((item) => !item.attributionRequired);
+  const lines = [`Picture credits — ${title}`, ''];
+  if (!items.length) lines.push('No pictures from outside sources: nothing to credit.');
+  else
+    lines.push(
+      'Credit required (put these lines in the video description):',
+      ...(required.length ? required.map(creditLine) : ['none']),
+      '',
+      'No credit required:',
+      ...(rest.length ? rest.map(creditLine) : ['none'])
+    );
+  if (madeWith) lines.push('', madeWith);
+  lines.push('');
+  return lines.join('\n');
+}
+
+/**
+ * The source, author and license of every picture in that export, or null
+ * when the server does not offer them (servers before 2026-10-29 answer 404)
+ * or the request fails: the download itself never depends on the credits.
+ */
+async function creditsOf(client, video) {
+  const jobId = video.export?.jobId;
+  if (!jobId) return null;
+  try {
+    const items = await client.request('GET', `jobs/${jobId}/attribution`);
+    return Array.isArray(items) ? items : null;
+  } catch (error) {
+    if (error?.extra?.status !== 404) progress(`credits: ${error.message}`);
+    return null;
+  }
+}
+
 const paidBody = (flags, action) => {
   if (flags.dryRun) return { dryRun: true };
   const max = Number(flags.maxCredits);
@@ -608,12 +660,21 @@ export async function run(argv, { client: given, env = process.env } = {}) {
             files[format] = null;
             progress(`${format}: ${error.message}`);
           }
+      const madeWith = `Made with Go Motion — ${client.links.docs}`;
+      const credits = await creditsOf(client, video);
+      if (credits) {
+        await mkdir(directory, { recursive: true });
+        files.credits = path.join(directory, 'CREDITS.txt');
+        await writeFile(files.credits, creditsText(video.title || stem, credits, madeWith));
+      } else files.credits = null;
       return {
         videoId: id,
         title: video.title,
         files,
+        // Whether a picture needs a credit line (those lead CREDITS.txt); null when the server gave no credits.
+        attributionRequired: credits ? credits.some((item) => item.attributionRequired) : null,
         studio: `${video.links.studio}?${UTM}`,
-        madeWith: `Made with Go Motion — ${client.links.docs}`,
+        madeWith,
       };
     }
     default:

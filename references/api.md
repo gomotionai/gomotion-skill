@@ -42,10 +42,12 @@ Dry run answer: `{ "quote": { "credits", "estimatedProviderUsd", "durationSecond
 | `POST /videos/:id/export` | paid body | `202 { job }` — 1080p MP4 |
 | `GET /videos/:id/jobs` | — | the last 30 jobs |
 | `GET /videos/:id/subtitles?format=srt\|vtt` | — | captions of the current version (text) |
-| `GET /jobs/:id` | — | job (`type`, `status`, `stage`, `progress`, `error`, `credits`, `refundedCredits`) plus `download` once an export succeeded |
+| `GET /videos/:id/attribution` | — | the pictures of the current version: one entry per scene with a picture, in scene order (see Picture credits) |
+| `GET /jobs/:id` | — | job (`type`, `status`, `stage`, `progress`, `error`, `credits`, `refundedCredits`) plus `download` (`url`, `subtitles`, `attribution` links) once an export succeeded |
 | `POST /jobs/:id/cancel` | — | job (refunded when no paid work started) |
 | `GET /jobs/:id/download` | — | `302` to a signed MP4 URL valid 15 minutes (follow it without the key) |
 | `GET /jobs/:id/subtitles?format=srt\|vtt` | — | captions of that export (text) |
+| `GET /jobs/:id/attribution` | — | the pictures of that export, same shape; what `download` writes to `CREDITS.txt` |
 
 ## The video record
 
@@ -63,12 +65,34 @@ Dry run answer: `{ "quote": { "credits", "estimatedProviderUsd", "durationSecond
   "submitErrors": [],                  // what a produce would refuse right now
   "produced": false,
   "planJob": null, "activeJob": null, "lastJob": null, "jobs": [],
-  "export": { "jobId": "…", "url": "/api/v1/jobs/…/download", "subtitles": { "srt": "…", "vtt": "…" } },
+  "export": { "jobId": "…", "url": "/api/v1/jobs/…/download", "subtitles": { "srt": "…", "vtt": "…" }, "attribution": "/api/v1/jobs/…/attribution" },
   "links": { "studio": "https://gomotion-ai.app/app/projects/…" }
 }
 ```
 
 Status flow: `review` →(plan)→ `planning` → `review` →(produce)→ `producing` → `ready` →(export)→ `exporting` → `exported`. `failed` carries `error`; the next paid call starts again.
+
+## Picture credits
+
+`GET /videos/:id/attribution` (the current version) and `GET /jobs/:id/attribution` (one finished export) answer with the pictures of the scenes, in scene order. Scenes without a picture are skipped and a picture two scenes share is listed under each; narration, music and the rendered files are not pictures. Servers from before 2026-10-29 answer 404.
+
+```jsonc
+[
+  {
+    "sceneId": "scene-5", "sceneNumber": 5, "sceneTitle": "Mars and its butterscotch sky",
+    "kind": "image",                       // image | video
+    "originKind": "stock",                 // stock | ai | illustrative | upload
+    "source": "commons", "sourceName": "Wikimedia Commons",
+    "name": "PIA16160 Mars sky",           // the picture's own title
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:…",
+    "author": "NASA/JPL-Caltech/MSSS", "authorUrl": "https://commons.wikimedia.org/wiki/File:…",
+    "license": "Public Domain", "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "attributionRequired": true            // the credit line belongs in the video description
+  }
+]
+```
+
+The CLI's `download` writes them to `CREDITS.txt` next to the MP4 (`files.credits`), the pictures with `attributionRequired` first, and answers with `attributionRequired`: `true`, `false`, or `null` when the server gave no credits.
 
 ## Error codes (`data.errorCode`)
 
