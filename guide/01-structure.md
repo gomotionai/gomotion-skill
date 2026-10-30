@@ -22,20 +22,31 @@ Most faceless videos under a few minutes have the same skeleton, whatever the to
 
 **The payoff lands the promise.** The last scene answers the question the hook asked, or shows the consequence of everything before it. In the example, the payoff is the one sentence the brief asked for: two hearts feed the gills, one feeds the body, and copper-based blood carries oxygen in the cold deep; the viewer leaves with one design instead of three facts. Do not end with "thanks for watching" or "let me know in the comments"; end on the idea, and let the platform's end screen do the rest.
 
-## Six shapes of a script
+## Ten shapes of a script
 
-The skeleton above bends into different shapes depending on what the video is for. Go Motion ships six writing styles, and they are a useful vocabulary even if you write by hand, because each one has its own opening and its own ending.
+The skeleton above bends into different shapes depending on what the video is for. Go Motion ships ten writing styles, each named after the hook it opens with, and they are a useful vocabulary even if you write by hand: the opening decides how the rest of the video has to move and what its ending owes the viewer.
 
 | Shape | Opens with | Moves by | Ends with | Good for |
 | --- | --- | --- | --- | --- |
-| **Clear explainer** | what the viewer will understand | one point per scene, concrete examples, natural transitions | a short recap that does not oversell | how-things-work topics, educational channels |
-| **Documentary narrative** | the context | process, the key change, the outcome; known facts kept apart from uncertain ones | the consequence | history, science, places, people |
-| **Suspense** | a question about the topic | information released scene by scene, each one narrowing the question | the answer to the opening question | mysteries, "why does X happen", investigations |
-| **Storytelling** | a situation and a goal | obstacle, turn, outcome | what changed | biographies, case studies, origin stories |
-| **Listicle** | why the topic matters | independent points in a clear order, each with a short example | a natural summary | tips, tools, comparisons |
-| **Fast-paced explainer** | a direct question or a counter-intuitive fact | short sentences, one conclusion per scene, controlled density | the conclusion, no slogans | Shorts, Reels, TikTok |
+| **Curiosity gap / Open loop** | something the viewer wants to know and is not told yet | the answer released in parts, each scene leaving one small question open | the full answer, then one thing the viewer can do with it | reveals, trivia, tutorials, history, documentaries |
+| **Bold claim / Counter-intuitive** | a common belief or habit, flatly rejected | the claim, why the usual way fails, the better way; evidence at every step | what changes when you do it the better way | money, productivity, health, skills, tool reviews |
+| **Direct question** | one specific question about a problem the viewer has | the answer straight away, then each scene answering or advancing one question, spoken to "you" | no question left open | problem-led topics: knowledge, money, productivity, relationships |
+| **List / Number promise** | how many points are coming and what they will get the viewer | the points in order, each number said aloud, each with its own example; no overlaps, and the count the hook gave is the count delivered | what the list is worth as a whole | tool picks, tips, pitfalls, rankings |
+| **Striking number / Result first** | the result itself, in its most concrete form | the steps behind it, one per scene, in exact terms | a method the viewer could repeat | case studies, results, data-driven stories |
+| **Call out the mistake / Stop doing X** | a habit that is costing the viewer the result they want | why it fails and what works instead, the wrong way set against the right way; direct, never mocking | the right way and what it gets them | tutorials, skill fixes, tool how-tos |
+| **Start mid-story / Story immersion** | the tensest moment: a time, a place, an action, no background | back to what led there, then on to what followed, in short sentences that paint the scene | how it turned out | stories, history, profiles, documentaries |
+| **Audience callout / Direct address** | one group or one situation, named so precisely that the right viewers know it is for them | a fix for that group's actual problem, spoken to "you" | the next step for that viewer's situation | niche audiences, stage-specific problems, solo businesses, professions |
+| **Myth vs reality / Before and after** | a common belief set against what is actually true | the myth, the truth, the evidence, what to do, one step per scene | what to do instead | money, health, growth, any field full of misinformation |
+| **Fear warning / Loss aversion** | a loss the viewer is already taking without noticing | the loss made concrete, with a number that can be checked or a real situation, then what to do about it | something the viewer can do about it today | money, health risks, time management, pitfalls |
 
-Two of these deserve a warning. Suspense only works when the payoff is real: a question that the video cannot actually answer, or answers with "it's complicated", feels like a bait. And storytelling about real people must not invent experiences for them; a story shape does not license fiction.
+Several of these shapes end on an action. That is still ending on the idea: the action comes out of the content, something the viewer can try, check or stop doing, never a request to like or subscribe and never a thank-you for watching.
+
+Each of these hooks is a promise, and the warnings that come with them are all about keeping it:
+
+- **A curiosity gap needs a real payoff.** A question the video cannot actually answer, or answers with "it's complicated", is bait. What the shape holds back is the full answer, not the interest: every scene before the end still gives the viewer something new.
+- **Numbers and evidence go in only when they can be checked.** The bold claim, the striking number, myth versus reality and the fear warning all stand on evidence, and it comes from your own material or from a source the scene carries, as [chapter 2](02-writing-for-the-voice.md#facts) describes. Where no reliable number exists, a concrete description of what happened does the same job without rounding a guess into a statistic. And one case is an example, not a rule.
+- **A story shape never licenses fiction about real people.** Opening in the middle of the action still means the time, the place and the words are the ones that happened.
+- **A fear warning must not exaggerate.** It names a real loss at its real size. A warning that inflates the risk to hold attention is a scare, and the channel's next warning will not be believed.
 
 ## Pacing
 

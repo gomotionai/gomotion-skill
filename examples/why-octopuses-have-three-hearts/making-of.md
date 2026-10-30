@@ -4,7 +4,7 @@
 
 ## In the studio
 
-1. **The script.** The wizard planned five scenes from the brief in the Clear explainer style. The hook promises three things and the last scene is the one-sentence takeaway the brief asked for. The scenes were read and approved as written.
+1. **The script.** The wizard planned five scenes from the brief in the Clear explainer style, one of the built-in styles at the time. The hook promises three things and the last scene is the one-sentence takeaway the brief asked for. The scenes were read and approved as written.
 2. **Production.** The voice recorded the five scenes, the captions were timed from that speech, and a picture was found for every scene: three from stock and archive libraries, one generated illustration where no library had the right picture, and one that was later replaced.
 3. **One line re-voiced.** After listening, one scene's narration was rewritten. Only that scene was recorded again; the other four kept their audio and the captions moved with the change.
 4. **Two pictures changed.** One scene's picture was swapped with *Find new visual* (the search ran again with new words and the result was judged against the narration); for another scene a photograph was picked by hand from the open libraries through *Choose media*.

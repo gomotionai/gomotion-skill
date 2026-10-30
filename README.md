@@ -35,7 +35,7 @@ This playbook is about those joints. Each chapter says what good looks like, why
 
 | | Chapter | What you will learn |
 | --- | --- | --- |
-| 1 | [Structure and pacing](guide/01-structure.md) | The scene as the unit of a video; hook, body and payoff; six shapes a script can take and what each is for; pacing; how long videos are outlined and written chapter by chapter without seams |
+| 1 | [Structure and pacing](guide/01-structure.md) | The scene as the unit of a video; hook, body and payoff; ten shapes a script can take, named after their hooks, and what each is for; pacing; how long videos are outlined and written chapter by chapter without seams |
 | 2 | [Writing for the voice](guide/02-writing-for-the-voice.md) | Text that survives being spoken; why length comes from the voice's rate and not from the page; how to brief a writer; borrowing a channel's style without its content; fact discipline; the review |
 | 3 | [Narration and timing](guide/03-narration-and-timing.md) | Casting a voice; why caption timing must come from the speech itself; changing one line without re-recording the video; pauses as cuts; music and sound; other languages |
 | 4 | [Captions](guide/04-captions.md) | Burned-in versus sidecar; one word at a time versus phrases with a live highlight; legibility on any picture; safe areas; cutting cues on pauses; scripts without spaces; nine styles and where each belongs |

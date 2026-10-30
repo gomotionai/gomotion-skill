@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2 — 2026-10-30
+
+- Chapter 1's shapes of a script follow the ten writing styles Go Motion now ships, each named after its hook: curiosity gap, bold claim, direct question, number promise, result first, calling out a mistake, starting mid-story, audience callout, myth versus reality and fear warning. The table says how each one opens, moves and ends and what it suits; the warnings after it cover a payoff that is real, evidence that can be checked, no fiction about real people and no exaggerated fear, and every ending stays on the content.
+- Chapter 2, the README and the worked example refer to the new set; the example was planned in Clear explainer, one of the first six styles, and says so.
+
 ## 0.4.1 — 2026-10-29
 
 - The worked example is now "Why Octopuses Have Three Hearts": a series made in the studio with an edit after production (one line re-voiced, two pictures changed, a generated cover), its brief, scenes, captions, making-of and picture credits. The earlier "Why the sky is blue" scenes remain as a test fixture.

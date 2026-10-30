@@ -17,7 +17,7 @@ Settings:
 | Format | Landscape, 16:9 (YouTube) |
 | Target length | just over a minute |
 | Language | English |
-| Writing style | Clear explainer |
+| Writing style | Clear explainer, one of the first built-in styles (since replaced; the current set is in [chapter 1](../../guide/01-structure.md#ten-shapes-of-a-script)) |
 | Captions | Karaoke preset (short phrases, a pill behind the current word) |
 | Background theme | Blue |
 

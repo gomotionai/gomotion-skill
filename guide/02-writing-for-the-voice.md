@@ -44,7 +44,7 @@ Given a brief like that, a planner (Go Motion's, or you) produces a title and a 
 
 Many faceless channels succeed on a recognisable voice: a way of opening, a rhythm, a sentence length, a persona. That is learnable, and it is worth being precise about what you learn.
 
-A writing style, learned from a channel's own captions, captures **form**: how the channel opens (a question, a claim, a scene), how fast it moves, how long its sentences are, how it addresses the viewer, how it handles facts and sources, how it closes. Go Motion builds such styles from a video's transcript and uses them as instructions to the planner, next to six built-in shapes (chapter 1).
+A writing style, learned from a channel's own captions, captures **form**: how the channel opens (a question, a claim, a scene), how fast it moves, how long its sentences are, how it addresses the viewer, how it handles facts and sources, how it closes. Go Motion builds such styles from a video's transcript and uses them as instructions to the planner, next to the ten built-in shapes (chapter 1).
 
 What a style does not and must not capture is **content**: the channel's research, its footage, its specific claims. Borrowing form is how genres work; borrowing content is plagiarism and, on most platforms, a reason for removal.
 
@@ -56,8 +56,8 @@ AI-written narration fails in a particular way: it sounds certain. The sentence 
 
 - **Do not invent statistics, quotations or dates.** A planner can be told this, and Go Motion's is; the writer's job is to hold the line in review.
 - **Label the claims that need support.** The scene that states a number or a date should carry where it came from, so the reviewer can check it and the description can cite it.
-- **Keep known facts apart from uncertain ones.** "Historians believe" and "the records show" are different sentences, and the documentary shape in chapter 1 depends on the difference.
-- **Stories about real people are not fiction.** A storytelling shape still cannot give a real person feelings or events they did not have.
+- **Keep known facts apart from uncertain ones.** "Historians believe" and "the records show" are different sentences, and the myth-versus-reality shape in chapter 1 depends on the difference: the reality has to be the part that is known.
+- **Stories about real people are not fiction.** A story shape, even one that opens in the middle of the action, still cannot give a real person feelings, events or words they did not have.
 
 ## Review: the script is the video
 
